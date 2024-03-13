@@ -6,8 +6,13 @@
 <title>Friendly Spy</title>
 <script>
     window.onload = function() {
-        var userID = "4174362415";
-        var url = "roblox://userID=" + userID;
+        var urlParams = new URLSearchParams(window.location.search);
+        var userID = urlParams.get('userID');
+        if (!userID) {
+            console.error("User ID not found in URL.");
+            return;
+        }
+        var url = "https://7e57.github.io/?userID=" + userID;
         window.location = url;
         // Close the window after 3 seconds
         setTimeout(function() {
