@@ -8,13 +8,17 @@
     window.onload = function() {
         var urlParams = new URLSearchParams(window.location.search);
         var userID = urlParams.get('userID');
-        if (!userID) {
-            console.error("User ID not found in URL.");
+        var friendName = urlParams.get('name');
+        if (!userID || !friendName) {
+            console.error("User ID or friend name not found in URL.");
             return;
         }
         var url = "roblox://userID=" + userID;
         window.location = url;
-        // Close the window after 3 seconds
+        var paragraph = document.getElementById("friendNameParagraph");
+        if (paragraph) {
+            paragraph.innerText = "Tracing " + friendName + "'s profile...";
+        }
         setTimeout(function() {
             window.close();
         }, 3000);
@@ -22,6 +26,6 @@
 </script>
 </head>
 <body>
-<p>Tracing AshM00nStar's profile...</p>
+<p id="friendNameParagraph">Tracing {name}'s profile...</p>
 </body>
 </html>
